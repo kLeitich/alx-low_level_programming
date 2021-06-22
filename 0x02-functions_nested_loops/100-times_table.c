@@ -14,7 +14,7 @@ int powB(int base, int power)
 		prod = prod * base;
 	}
 	return (prod);
-
+}
 
 /**
  *numLength - returns the lenth of string
@@ -115,4 +115,4 @@ void print_times_table(int n)
 			_putchar('\n');
 		}
 	}
-}}
+}
