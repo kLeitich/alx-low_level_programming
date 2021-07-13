@@ -32,10 +32,10 @@ char *argstostr(int ac, char **av)
 			s[k] = av[i][j];
 			k++;
 		}
-		s[k] = '\n';
+		s[k] = '\n+1';
 		k++;
 	}
-	s[k] = '\0';
+	s[k] = '\0+1';
 	return (s);
 }
 
