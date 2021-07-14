@@ -1,53 +1,53 @@
+#include "holberton.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
- * _strlen - find length of a string
- * @s: string
- * Return: int
+ * argstostr - concatenates all the arguments of a program.
+ * @ac: argument count.
+ * @av: argument vector.
+ *
+ * Return: pointer of an array of char
  */
-
-
-int _strlen(char *s)
-{
-int size = 0;
-for (; s[size] != '\0'; size++)
-;
-return (size);
-}
-
-/**
- * *argstostr - description
- * @ac: int
- * @av: arguments
- * Return: string
- */
-
 char *argstostr(int ac, char **av)
 {
-int i = 0, nc = 0, j = 0, cmpt = 0;
-char *s;
+  char *aout;
+  int c, i, j, ia;
 
-if (ac == 0 || av == NULL)
+  if (ac == 0)
+    return (NULL);
+
+  for (c = i = 0; i < ac; i++)
+    {
+      if (av[i] == NULL)
 	return (NULL);
 
-for (; i < ac; i++, nc++)
-	nc += _strlen(av[i]);
+      for (j = 0; av[i][j] != '\0'; j++)
+	c++;
+      c++;
+    }
 
-s = malloc(sizeof(char) * nc + 1);
-if (s == 0)
-	return (NULL);
+  aout = malloc((c + 1) * sizeof(char));
 
-for (i = 0; i < ac; i++)
-{
-	for (j = 0; av[i][j] != '\0'; j++, cmpt++)
-		s[cmpt] = av[i][j];
+  if (aout == NULL)
+    {
+      free(aout);
+      return (NULL);
+    }
 
-	s[cmpt] = '\n';
-	cmpt++;
-}
-s[cmpt] = '\0';
+  for (i = j = ia = 0; ia < c; j++, ia++)
+    {
+      if (av[i][j] == '\0')
+	{
+	  aout[ia] = '\n';
+	  i++;
+	  ia++;
+	  j = 0;
+	}
+      if (ia < c - 1)
+	aout[ia] = av[i][j];
+    }
+  aout[ia] = '\0';
 
-return (s);
+  return (aout);
 }
 
