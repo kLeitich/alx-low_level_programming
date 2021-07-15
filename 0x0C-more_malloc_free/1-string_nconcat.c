@@ -1,45 +1,69 @@
-#include <stdlib.h>
 #include "holberton.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * *string_nconcat - concatenates n bytes of a string to another string
- * @s1: string to append to
- * @s2: string to concatenate from
- * @n: number of bytes from s2 to concatenate to s1
+ * _strlen - a counter for the char s.
  *
- * Return: pointer to the resulting string
+ * @s: char.
+ *
+ * Return: the success.
  */
+
+int _strlen(char *s)
+
+{
+	int i = 0;
+
+	while (*(s + i) != 0)
+		i++;
+	return (i);
+}
+
+/**
+ * string_nconcat - concatenated 2 string but n bytes of s2.
+ *
+ * @s1: string 1
+ * @s2: string 2
+ * @n: unsigned int
+ *
+ * Return: two strings.
+ */
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *s;
-	unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+	char *c;
+	unsigned int sizei, sizeii, i, ii;
 
-	while (s1 && s1[len1])
-		len1++;
-	while (s2 && s2[len2])
-		len2++;
-
-	if (n < len2)
-		s = malloc(sizeof(char) * (len1 + n + 1));
-	else
-		s = malloc(sizeof(char) * (len1 + len2 + 1));
-
-	if (!s)
-		return (NULL);
-
-	while (i < len1)
+	if (s1 == NULL)
 	{
-		s[i] = s1[i];
-		i++;
+		s1 = "";
 	}
-
-	while (n < len2 && i < (len1 + n))
-		s[i++] = s2[j++];
-
-	while (n >= len2 && i < (len1 + len2))
-		s[i++] = s2[j++];
-
-	s[i] = '\0';
-
-	return (s);
+	if (s2 == NULL)
+	{
+		s2 = "";
+	}
+	sizei = _strlen(s1);
+	sizeii = _strlen(s2);
+	if (n > sizeii)
+	{
+		n = sizeii;
+	}
+	c = malloc(sizeof(char) * (sizei + n) + 1);
+	if (c == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; i < sizei; i++)
+	{
+		c[i] = s1[i];
+	}
+	for (ii = 0; ii < n; ii++)
+	{
+		c[i + ii] = s2[ii];
+	}
+	{
+		c[i + ii] = '\0';
+		return (c);
+	}
 }
