@@ -1,5 +1,9 @@
 #include "main.h"
-
+#include "holberton.h"
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 /**
  * create_file - creates a file
  * @filename: pointer to filename
